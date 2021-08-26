@@ -11,11 +11,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-public class MultitenantIndex {
+public class MultitenantIndexTest {
 	@Test
 	public void testCreate() {
-		String name = "/" + getClass().getName().replace(".", "/") + ".properties";
-		InputStream resourceAsStream = getClass().getResourceAsStream(name);
+		String name = getClass().getName().replace(".", "/") + ".properties";
+		ClassLoader classLoader = getClass().getClassLoader();
+		InputStream resourceAsStream = classLoader.getResourceAsStream(name);
 		Properties properties = new Properties();
 		try {
 			properties.load(resourceAsStream);
